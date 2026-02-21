@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Hub - Study Materials</title>
+    <style>
+        /* --- General Styles --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            scroll-behavior: smooth;
+            transition: background-color 0.4s, color 0.4s;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            font-size: 32px;
+            border-bottom: 3px solid #3498db;
+            display: inline-block;
+            padding-bottom: 5px;
+            transition: color 0.4s;
+        }
+        .text-center { text-align: center; }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: #1a252f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        #darkModeBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            background-color: #f1c40f;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #darkModeBtn:hover { background-color: #f39c12; }
+
+        nav {
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            gap: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: #3498db; }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h2 { font-size: 36px; margin-bottom: 10px; }
+        
+        #greeting {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #f1c40f;
+        }
+
+        /* --- Grid & Cards --- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 5px solid #3498db;
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.4s;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.1); }
+        .card h3 { margin-top: 0; }
+        
+        .card a { display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; transition: 0.3s; }
+        .card a:hover { opacity: 0.8; }
+
+        /* --- JS Animation Styles --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        body.dark-mode .card {
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 10px rgba(255,255,255,0.05);
+            color: #e0e0e0;
+        }
+        body.dark-mode .section-title {
+            color: #e0e0e0;
+        }
+
+        /* --- Footer Styles --- */
+        footer { 
+            text-align: center; 
+            padding: 30px 20px; 
+            background-color: #1a252f; 
+            color: white; 
+            margin-top: 50px; 
+        }
+        .visitor-counter {
+            margin-top: 15px; 
+            background-color: #2c3e50; 
+            display: inline-block; 
+            padding: 10px 20px; 
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+        .visitor-counter p {
+            margin: 0; 
+            font-size: 14px; 
+            color: #f1c40f; 
+            font-weight: bold; 
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <header id="home">
+        <h1>📚 STUDENT HUB</h1>
+        <p>AAPKA APNA EDUCATION & STUDY MATERIAL PORTAL</p>
+        <button id="darkModeBtn">🌙 Dark Mode</button>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#subjects">Study Materials</a>
+        <a href="#crash-course-section">Crash Course</a>
+        <a href="#vvi-section">VVI Questions</a>
+    </nav>
+
+    <div class="hero">
+        <div id="greeting">Welcome!</div>
+        <h2>Padhai Ko Banayein Aasan!</h2>
+        <p>Class 12th Science (PCM/B) aur Languages ke notes ek hi jagah par.</p>
+    </div>
+
+    <div class="container" id="subjects">
+        <div class="text-center">
+            <h2 class="section-title">Hamare study materials</h2>
+        </div>
+        
+        <div class="grid">
+            <div class="card" style="border-top-color: #e74c3c;">
+                <h3 style="color: #e74c3c;">⚛️ Physics</h3>
+                <p>Optics aur Modern Physics ke detailed notes.</p>
+                <a href="physics.html" style="background-color: #e74c3c;">Read Notes ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #8e44ad;">
+                <h3 style="color: #8e44ad;">🧪 Chemistry</h3>
+                <p>Organic aur Inorganic reactions ke PDF notes.</p>
+                <a href="chemistry.html" style="background-color: #8e44ad;">Read Notes ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #27ae60;">
+                <h3 style="color: #27ae60;">📐 Mathematics</h3>
+                <p>Integration aur Trigonometry ke sabhi formulas.</p>
+                <a href="math.html" style="background-color: #27ae60;">View Formulas ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #16a085;">
+                <h3 style="color: #16a085;">🧬 Biology</h3>
+                <p>Reproduction, Genetics aur Ecology ke complete notes.</p>
+                <a href="biology.html" style="background-color: #16a085;">Read Notes ➔</a>
+            </div>
+            
+            <div class="card" style="border-top-color: #d35400;">
+                <h3 style="color: #d35400;">📖 Hindi Lit.</h3>
+                <p>Digant Bhag 2 ke sabhi chapters ki summaries.</p>
+                <a href="hindi.html" style="background-color: #d35400;">Read Summaries ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #2980b9;">
+                <h3 style="color: #2980b9;">📝 English Lit.</h3>
+                <p>Rainbow Part 2 ke Prose aur Poetry chapters.</p>
+                <a href="english.html" style="background-color: #2980b9;">Read Summaries ➔</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="crash-course-section">
+        <div class="text-center">
+            <h2 class="section-title" style="color: #e67e22; border-bottom-color: #e67e22;">🚀 Crash Course Notes</h2>
+            <p style="font-weight: bold; color: #666; margin-bottom: 30px;">Kam samay mein poora syllabus revise karein.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card" style="border-top-color: #e74c3c;">
+                <h3 style="color: #e74c3c;">⚛️ Physics</h3>
+                <p>Optics & Modern Physics (One-Shot Revision)</p>
+                <a href="https://drive.google.com/drive/folders/1OM4FXOtcNr4lgmODmqcB4skbJbiiq1gB" style="background-color: #e74c3c;">Read Notes ➔</a>
+            </div>
+            
+            <div class="card" style="border-top-color: #8e44ad;">
+                <h3 style="color: #8e44ad;">🧪 Chemistry</h3>
+                <p>Organic & Inorganic Reactions (Fast Track)</p>
+                <a href="https://drive.google.com/drive/folders/1mxKjBdCy3UCN6nZ_B0NZgB6zvtLLgv7k" style="background-color: #8e44ad;">Read Notes ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #27ae60;">
+                <h3 style="color: #27ae60;">📐 Mathematics</h3>
+                <p>Integration & Calculus Short Tricks</p>
+                <a href="math-crash.html" style="background-color: #27ae60;">View Tricks ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #16a085;">
+                <h3 style="color: #16a085;">🧬 Biology</h3>
+                <p>Genetics & Ecology (Quick Revision Notes)</p>
+                <a href="https://drive.google.com/drive/folders/1e-q4n_t01KYJHZ85GllT4d81cNDtG6kU" style="background-color: #16a085;">Read Notes ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #d35400;">
+                <h3 style="color: #d35400;">📖 Hindi Lit.</h3>
+                <p>Digant Bhag 2 Quick Revision & Summaries</p>
+                <a href="https://drive.google.com/drive/folders/15DEmhUx9QmP-ffho3vmABX4ZJioqvEim" style="background-color: #d35400;">Read Summaries ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #2980b9;">
+                <h3 style="color: #2980b9;">📝 English Lit.</h3>
+                <p>Rainbow Part 2 Prose/Poetry (One-Shot)</p>
+                <a href="https://drive.google.com/drive/folders/1MElRteenhEb4wrsMEN-8hbE6qY0qeeHZ" style="background-color: #2980b9;">Read Summaries ➔</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="vvi-section" style="margin-top: 50px;">
+        <div class="text-center">
+            <h2 class="section-title" style="color: #c0392b; border-bottom-color: #c0392b;">🎯 VVI Guess Questions</h2>
+            <p style="font-weight: bold; color: #666; margin-bottom: 30px;">Board Exams ke liye sabse zyada aane wale sawal.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card" style="border-top-color: #e74c3c;">
+                <h3 style="color: #e74c3c;">⚛️ Physics</h3>
+                <p>VVI Long Answers, Numericals & Derivations</p>
+                <a href="https://drive.google.com/drive/folders/1tlzVtjIJM86LYmFpwqa8uoyjix_W60Kp" style="background-color: #e74c3c;">View Questions ➔</a>
+            </div>
+            
+            <div class="card" style="border-top-color: #8e44ad;">
+                <h3 style="color: #8e44ad;">🧪 Chemistry</h3>
+                <p>Important Name Reactions & Reasoning Qs</p>
+                <a href="https://drive.google.com/drive/folders/1TioD9yhDcFH5zOnSrUMAFbGAHzubNwTa" style="background-color: #8e44ad;">View Questions ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #27ae60;">
+                <h3 style="color: #27ae60;">📐 Mathematics</h3>
+                <p>Calculus & 3D Geometry Repeated Objectives</p>
+                <a href="math-vvi.html" style="background-color: #27ae60;">View Questions ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #16a085;">
+                <h3 style="color: #16a085;">🧬 Biology</h3>
+                <p>VVI Diagrams & Differentiations</p>
+                <a href="https://drive.google.com/drive/folders/1mMpL7X6DC12QPLhxm3F4NhS64sFzwHwX" style="background-color: #16a085;">View Questions ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #d35400;">
+                <h3 style="color: #d35400;">📖 Hindi Lit.</h3>
+                <p>Important Nibandh, Patra & Vyakhya</p>
+                <a href="https://drive.google.com/drive/folders/14bkKB5cEl-DM_mNAc-zcVXH-4iy40xhs" style="background-color: #d35400;">View Questions ➔</a>
+            </div>
+
+            <div class="card" style="border-top-color: #2980b9;">
+                <h3 style="color: #2980b9;">📝 English Lit.</h3>
+                <p>Top Essays, Letters & Chapter Summaries</p>
+                <a href="https://drive.google.com/drive/folders/1lJxc1CtIsONxc0R75bDD5OYkreIzffh7" style="background-color: #2980b9;">View Questions ➔</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Student Hub. Designed by Aditya Kumar.</p>
+        
+        <div class="visitor-counter">
+            <p>👁️ Total Visitors</p>
+            <img src="https://api.visitorbadge.io/api/visitors?path=adityakumar-studenthub&labelColor=%232c3e50&countColor=%23f39c12" alt="Visitor Count">
+        </div>
+    </footer>
+
+    <script>
+        // 1. Greeting Logic
+        function setGreeting() {
+            let date = new Date();
+            let hour = date.getHours();
+            let greetingText = "";
+
+            if (hour >= 5 && hour < 12) {
+                greetingText = "🌅 Good Morning, Student!";
+            } else if (hour >= 12 && hour < 17) {
+                greetingText = "☀️ Good Afternoon, Student!";
+            } else if (hour >= 17 && hour < 21) {
+                greetingText = "🌇 Good Evening, Student!";
+            } else {
+                greetingText = "🌙 Padai ka time hai, Good Night!";
+            }
+            document.getElementById("greeting").innerText = greetingText;
+        }
+        setGreeting();
+
+        // 2. Dark Mode Logic
+        let darkModeBtn = document.getElementById("darkModeBtn");
+        darkModeBtn.addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                darkModeBtn.innerText = "☀️ Light Mode";
+                darkModeBtn.style.backgroundColor = "#f39c12"; 
+            } else {
+                darkModeBtn.innerText = "🌙 Dark Mode";
+                darkModeBtn.style.backgroundColor = "#f1c40f"; 
+            }
+        });
+
+        // 3. Scroll Animations (Cards fade-in)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.classList.add('fade-in');
+            observer.observe(card);
+        });
+
+        // 4. Buttons Click Effect
+        document.querySelectorAll('.card a').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault(); 
+                let originalText = this.innerText;
+                let targetUrl = this.getAttribute('href'); 
+                
+                this.innerText = "⏳ Opening...";
+                this.style.opacity = "0.8"; 
+                
+                setTimeout(() => {
+                    this.innerText = originalText;
+                    this.style.opacity = "1";
+                    window.location.href = targetUrl; 
+                }, 500);
+            });
+        });
+
+        // 5. Smooth Scrolling Nav Links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                let targetId = this.getAttribute('href');
+                let targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crash Course - Student Hub</title>
+    <style>
+        /* --- General Styles --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            scroll-behavior: smooth;
+            transition: background-color 0.4s, color 0.4s;
+            overflow-x: hidden; /* Side animation ke liye zaroori */
+        }
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #e67e22;
+            font-size: 36px;
+            border-bottom: 3px solid #e67e22;
+            display: inline-block;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .text-center { text-align: center; }
+
+        /* --- Header & Navigation --- */
+        header {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        #darkModeBtn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 15px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        #darkModeBtn:hover { background-color: #1a252f; }
+
+        nav {
+            background-color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            gap: 30px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        nav a:hover { color: #f39c12; }
+
+        /* --- Crash Course Grid --- */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .module-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-top: 6px solid #e67e22;
+            position: relative;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+        }
+        .module-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(230, 126, 34, 0.2);
+        }
+
+        .module-header {
+            background-color: #fdf2e9;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #fae5d3;
+        }
+        .module-header h3 {
+            margin: 0;
+            color: #d35400;
+            font-size: 24px;
+        }
+
+        .module-content {
+            padding: 20px;
+        }
+        .module-content ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .module-content ul li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .module-content ul li::before {
+            content: '⚡';
+            font-size: 12px;
+        }
+        .module-content ul li:last-child { border-bottom: none; }
+
+        .download-btn {
+            display: block;
+            text-align: center;
+            margin: 20px;
+            padding: 12px;
+            background: linear-gradient(135deg, #e67e22, #d35400);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .download-btn:hover {
+            background: linear-gradient(135deg, #d35400, #c0392b);
+            transform: scale(1.05);
+        }
+
+        /* --- JS Animation Classes --- */
+        .slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .slide-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+
+        /* --- Dark Mode Styles --- */
+        body.dark-mode { background-color: #121212; color: #e0e0e0; }
+        body.dark-mode .module-card { background-color: #1e1e1e; box-shadow: 0 5px 15px rgba(255,255,255,0.05); }
+        body.dark-mode .module-header { background-color: #2c1a0c; border-bottom-color: #4a2f18; }
+        body.dark-mode .module-content ul li { border-bottom-color: #444; }
+        body.dark-mode .section-title { color: #f39c12; border-bottom-color: #f39c12; }
+
+        footer { text-align: center; padding: 20px; background-color: #1a252f; color: white; margin-top: 50px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🚀 Superfast Crash Course</h1>
+        <p>Akhiri Samay Ka Brahmastra - Quick Revision Notes</p>
+        <button id="darkModeBtn">🌙 Dark Mode</button>
+    </header>
+
+    <nav>
+        <a href="index.html">⬅️ Back to Home</a>
+    </nav>
+
+    <div class="container">
+        <div class="text-center slide-up js-anim">
+            <h2 class="section-title">One-Shot Materials</h2>
+        </div>
+        
+        <div class="timeline-grid">
+            
+            <div class="module-card slide-left js-anim">
+                <div class="module-header">
+                    <h3>⚛️ Physics</h3>
+                </div>
+                <div class="module-content">
+                    <ul>
+                       <!-- <li>Optics: Ray & Wave Optics (One-Shot)</li>
+                        <li>Modern Physics: Dual Nature & Atoms</li>
+                        <li>All Derivations Cheat Sheet</li>
+                    </ul>-->
+                    <ul>
+                        <li>Physics All chapter Crash course notes</li>
+                    </ul>
+             </div>
+                <a href="https://drive.google.com/file/d/1ZyKa1hCLRDykEhhJrbIp927uNlUoioYx/view?usp=drivesdk target="_blank"" class="download-btn">Download PDF ⬇️</a>
+            </div>
+
+
+                <!--Tab to edit-->
+            </>
+
+            <div class="module-card slide-up js-anim" style="transition-delay: 0.2s;">
+                <div class="module-header" style="background-color: #e8f8f5; border-bottom-color: #d1f2eb;">
+                    <h3 style="color: #16a085;">📐 Mathematics</h3>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Integration: All Standard Formulas</li>
+                        <li>Trigonometry Short Tricks</li>
+                        <li>Calculus VVI Objective Q&A</li>
+                    </ul>
+                </div>
+                <a href="#" class="download-btn" style="background: linear-gradient(135deg, #1abc9c, #16a085);">Download PDF ⬇️</a>
+            </div>
+                        <div class="module-card slide-up js-anim" style="transition-delay: 0.2s;">
+                <div class="module-header" style="background-color: #e8f8f5; border-bottom-color: #d1f2eb;">
+                    <h3 style="color: #16a085;"> Biology</h3>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Biology All Chapter</li>
+                    </ul>
+                </div>
+                <a href="#" class="download-btn" style="background: linear-gradient(135deg, #1abc9c, #16a085);">Download PDF ⬇️</a>
+            </div>
+
+            <div class="module-card slide-right js-anim" style="transition-delay: 0.4s;">
+                <div class="module-header" style="background-color: #fbeee6; border-bottom-color: #f6ddcc;">
+                    <h3 style="color: #e74c3c;">📖 Hindi (Digant)</h3>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>'Usne Kaha Tha' - Quick Summary</li>
+                        <li>'Tirich' - Main Points & Theme</li>
+                        <li>Lekhak Parichay (Author Bios)</li>
+                    </ul>
+                </div>
+                <a href="#" class="download-btn" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">Download PDF ⬇️</a>
+            </div>
+                        <div class="module-card slide-up js-anim" style="transition-delay: 0.2s;">
+                <div class="module-header" style="background-color: #e8f8f5; border-bottom-color: #d1f2eb;">
+                    <h3 style="color: #16a085;">English</h3>
+                </div>
+                <div class="module-content">
+                    <ul>
+                        <li>Integration: All Standard Formulas</li>
+                        <li>Trigonometry Short Tricks</li>
+                        <li>Calculus VVI Objective Q&A</li>
+                    </ul>
+                </div>
+                <a href="#" class="download-btn" style="background: linear-gradient(135deg, #1abc9c, #16a085);">Download PDF ⬇️</a>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Student Hub. Superfast Revision Portal.</p>
+    </footer>
+
+    <script>
+        // 1. Dark Mode Logic
+        let darkModeBtn = document.getElementById("darkModeBtn");
+        darkModeBtn.addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+            if (document.body.classList.contains("dark-mode")) {
+                darkModeBtn.innerText = "☀️ Light Mode";
+                darkModeBtn.style.backgroundColor = "#f39c12"; 
+                darkModeBtn.style.color = "#333";
+            } else {
+                darkModeBtn.innerText = "🌙 Dark Mode";
+                darkModeBtn.style.backgroundColor = "#2c3e50"; 
+                darkModeBtn.style.color = "white";
+            }
+        });
+
+        // 2. Scroll Animations (Slide Left, Right, Up)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Ek baar animate hone ke baad observe karna band karein
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.js-anim').forEach(element => {
+            observer.observe(element);
+        });
+
+// Buttons Click Effect
+document.querySelectorAll('.card a').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        // Agar link kisi asli page ya drive ka hai, toh animation ke baad use khulne dein
+        let targetUrl = this.getAttribute('href');
+        
+        if (targetUrl !== "#" && targetUrl !== "") {
+            e.preventDefault(); // Sirf thodi der rokne ke liye
+            let originalText = this.innerText;
+            this.innerText = "⏳ Opening...";
+            
+            setTimeout(() => {
+                this.innerText = originalText;
+                window.open(targetUrl, '_blank'); // Naye tab mein PDF khul jayega
+            }, 600);
+        }
+    });
+});
+
+    </script>
+</body>
+</html>

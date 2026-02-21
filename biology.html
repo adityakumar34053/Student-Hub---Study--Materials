@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biology Notes - Class 12</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: #f4f7f6; 
+            margin: 0; 
+            padding: 20px; 
+            color: #333;
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            background: white; 
+            padding: 30px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+        }
+        h1 { 
+            color: #2c3e50; 
+            border-bottom: 3px solid #16a085; 
+            padding-bottom: 10px; 
+            text-align: center; 
+        }
+        h2 {
+            color: #16a085;
+            margin-top: 40px;
+            border-bottom: 2px dashed #1abc9c;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        
+        /* --- Search Bar Design (Teal Theme) --- */
+        .search-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        #searchInput {
+            width: 80%;
+            max-width: 500px;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #16a085;
+            border-radius: 25px;
+            outline: none;
+            transition: box-shadow 0.3s;
+        }
+        #searchInput:focus {
+            box-shadow: 0 0 10px rgba(22, 160, 133, 0.4);
+        }
+
+        .back-btn { 
+            display: inline-block; 
+            margin-bottom: 20px; 
+            padding: 10px 15px; 
+            background-color: #16a085; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-weight: bold; 
+        }
+        .back-btn:hover { background-color: #117a65; }
+
+        .chapter-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; 
+            margin-top: 20px; 
+        }
+        .chapter-card { 
+            background: #f2fbf9; 
+            padding: 20px; 
+            border-left: 5px solid #16a085; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+            transition: transform 0.2s;
+        }
+        .chapter-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .chapter-card h3 { 
+            color: #117a65; 
+            margin-top: 0; 
+            font-size: 16px; 
+            line-height: 1.4;
+        }
+        
+        .btn-group { 
+            display: flex; 
+            gap: 10px; 
+            margin-top: 15px; 
+        }
+        .pdf-btn { 
+            padding: 8px 12px; 
+            background-color: #3498db; 
+            color: white; 
+            text-decoration: none; 
+            border-radius: 5px; 
+            font-size: 14px; 
+            font-weight: bold; 
+            text-align: center; 
+            flex: 1; 
+        }
+        .pdf-btn:hover { background-color: #2980b9; }
+        .download-btn { background-color: #e67e22; }
+        .download-btn:hover { background-color: #d35400; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-btn">⬅ Back to Home</a>
+        <h1>🧬 Biology Notes - Class 12</h1>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="🔍 Search chapter (e.g., Reproduction, Genetics)...">
+        </div>
+
+        <h2>Unit VI: Reproduction</h2>
+        <div class="chapter-grid">
+            <div class="chapter-card"><h3>Ch 1: Reproduction in Organisms</h3><div class="btn-group"><a href="pdfs/bio-ch1.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch1.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 2: Sexual Reproduction in Flowering Plants</h3><div class="btn-group"><a href="pdfs/bio-ch2.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch2.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 3: Human Reproduction</h3><div class="btn-group"><a href="pdfs/bio-ch3.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch3.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 4: Reproductive Health</h3><div class="btn-group"><a href="pdfs/bio-ch4.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch4.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+        </div>
+
+        <h2>Unit VII: Genetics and Evolution</h2>
+        <div class="chapter-grid">
+            <div class="chapter-card"><h3>Ch 5: Principles of Inheritance and Variation</h3><div class="btn-group"><a href="pdfs/bio-ch5.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch5.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 6: Molecular Basis of Inheritance</h3><div class="btn-group"><a href="pdfs/bio-ch6.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch6.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 7: Evolution</h3><div class="btn-group"><a href="pdfs/bio-ch7.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch7.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+        </div>
+
+        <h2>Unit VIII: Biology in Human Welfare</h2>
+        <div class="chapter-grid">
+            <div class="chapter-card"><h3>Ch 8: Human Health and Disease</h3><div class="btn-group"><a href="pdfs/bio-ch8.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch8.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 9: Strategies for Enhancement in Food Production</h3><div class="btn-group"><a href="pdfs/bio-ch9.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch9.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 10: Microbes in Human Welfare</h3><div class="btn-group"><a href="pdfs/bio-ch10.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch10.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+        </div>
+
+        <h2>Unit IX: Biotechnology</h2>
+        <div class="chapter-grid">
+            <div class="chapter-card"><h3>Ch 11: Biotechnology: Principles and Processes</h3><div class="btn-group"><a href="pdfs/bio-ch11.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch11.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 12: Biotechnology and its Applications</h3><div class="btn-group"><a href="pdfs/bio-ch12.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch12.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+        </div>
+
+        <h2>Unit X: Ecology</h2>
+        <div class="chapter-grid">
+            <div class="chapter-card"><h3>Ch 13: Organisms and Populations</h3><div class="btn-group"><a href="pdfs/bio-ch13.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch13.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 14: Ecosystem</h3><div class="btn-group"><a href="pdfs/bio-ch14.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch14.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 15: Biodiversity and Conservation</h3><div class="btn-group"><a href="pdfs/bio-ch15.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch15.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+            <div class="chapter-card"><h3>Ch 16: Environmental Issues</h3><div class="btn-group"><a href="pdfs/bio-ch16.pdf" target="_blank" class="pdf-btn">📄 View</a><a href="pdfs/bio-ch16.pdf" download class="pdf-btn download-btn">⬇ Download</a></div></div>
+        </div>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const cards = document.querySelectorAll('.chapter-card');
+
+        searchInput.addEventListener('keyup', function() {
+            let filterValue = searchInput.value.toLowerCase();
+
+            cards.forEach(function(card) {
+                let chapterTitle = card.querySelector('h3').innerText.toLowerCase();
+                if (chapterTitle.indexOf(filterValue) > -1) {
+                    card.style.display = ""; 
+                } else {
+                    card.style.display = "none"; 
+                }
+            });
+        });
+    </script>
+</body>
+</html>
